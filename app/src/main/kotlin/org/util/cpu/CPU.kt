@@ -1,9 +1,6 @@
 package org.util.cpu
 
-import org.util.registers.Register8
-import org.util.registers.Register16
-
-class CPU(generalRegisters: Int){
+class CPU(generalRegisters: Int = 8){
     private val general: List<Register8> = List<Register8>(generalRegisters) {Register8(0)}
     public val ProgramCounter: Register16 = Register16(0)
     public val timer: Register8 = Register8(0)
