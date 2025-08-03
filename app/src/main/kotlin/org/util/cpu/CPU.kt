@@ -8,5 +8,10 @@ class CPU(generalRegisters: Int = 8){
     public var memory: Boolean = false
 
     public fun getGeneralRegister(address: Int): Register8 = general.get(address)
-    public fun getTimer(): Runnable = Runnable {timer.data.dec()}
+    public fun getTimer(): Runnable = Runnable {
+        if (timer.data != 0.toByte()){
+            timer.data.dec()
+        }
+        
+    }
 }

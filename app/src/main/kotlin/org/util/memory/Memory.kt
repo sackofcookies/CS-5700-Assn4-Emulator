@@ -1,8 +1,7 @@
 package org.util.memory
 
-abstract class Memory(size: Int = 4096) {
+abstract class Memory(size: Int = 4096, private val memory: MutableList<Byte> = MutableList(size) {0}) {
     abstract val writable: Boolean
-    private val memory: MutableList<Byte> = MutableList(size) {0}
 
     public fun get(address: Short): Byte = this.memory[address.toInt()]
     public fun getShort(address: Short): Short = ((this.memory[address.toInt()].toInt().shl(8) + this.memory[address.toInt() + 1].toInt()).toShort())
