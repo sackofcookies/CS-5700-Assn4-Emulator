@@ -16,6 +16,9 @@ class ReadKeyboardInstruction: Instruction(){
         println("Wating for Keyboard Input")
         do {
             input = readln()
+            if (input == ""){
+                input = "00"
+            }
         } while(!((input.substring(0,0) in ALLOWED_CHARACTERS) || (input.substring(1,1) in ALLOWED_CHARACTERS) ))
         computer.cpu.getGeneralRegister(rX).data = input.substring(0,1).toInt(16).toByte()
     }
