@@ -6,10 +6,10 @@ abstract class Instruction{
     public fun apply(data: String, computer: D5700){
         parse(data)
         operation(computer)
-        ProgramCounter()
+        ProgramCounter(computer)
     }
 
     abstract protected fun parse(data: String)
     abstract protected fun operation(computer: D5700)
-    abstract protected fun ProgramCounter()
+    abstract protected fun ProgramCounter(computer: D5700)
 }
