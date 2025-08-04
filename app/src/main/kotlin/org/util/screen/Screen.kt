@@ -8,7 +8,7 @@ class Screen(edgeLength: Int = 8): Subject<ScreenObserver>{
         this.display.get(x).set(y, element)
         this.notifyObservers()
     }
-    public fun getDisplay: List<List<Char>> = display
+    public fun getDisplay(): List<List<Char>> = display
     override fun notifyObservers() = observers.forEach() {it.update(display)}
     override fun registerObserver(observer: ScreenObserver) {observers.add(observer)}
     override fun unregiserObserver(observer: ScreenObserver) {observers.remove(observer)}

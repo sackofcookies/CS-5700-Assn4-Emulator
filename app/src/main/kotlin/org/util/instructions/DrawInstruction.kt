@@ -15,7 +15,7 @@ class DrawInstruction: Instruction(){
     }
     override fun operation(computer: D5700){
         val temp = computer.cpu.getGeneralRegister(rX).data.toInt()
-        if (temp > 127){
+        if (0 > temp || temp > 127){
             throw IllegalArgumentException("Cannot display characters above 127")
         }
         computer.screen.setPos(rY, rZ, temp.toChar())

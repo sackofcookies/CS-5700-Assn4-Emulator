@@ -184,11 +184,7 @@ class InstructionTests {
         var inputSequence = listOf("ZZ", "0A").iterator()
         fun mockReadln() = inputSequence.next()
 
-        val originalReadln = ::readln
         try {
-            // Replace readln globally (not trivial in Kotlin without libraries, so skip)
-            // Instead, test operation logic separately or mark as integration test
-            // We can only test parse and ProgramCounter here
             instr.ProgramCounter(d)
             assertEquals(2.toShort(), d.cpu.ProgramCounter.data)
         } finally {

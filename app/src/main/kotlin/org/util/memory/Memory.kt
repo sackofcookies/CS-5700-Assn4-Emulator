@@ -3,10 +3,10 @@ package org.util.memory
 abstract class Memory(size: Int = 4096, private val memory: MutableList<Byte> = MutableList(size) {0}) {
     abstract val writable: Boolean
 
-    public fun get(address: Short): Byte = this.memory[address.toInt()]
-    public fun getShort(address: Short): Short = ((this.memory[address.toInt()].toInt().shl(8) + this.memory[address.toInt() + 1].toInt()).toShort())
+    public open fun get(address: Short): Byte = this.memory[address.toInt()]
+    public open fun getShort(address: Short): Short = ((this.memory[address.toInt()].toInt().shl(8) + this.memory[address.toInt() + 1].toInt()).toShort())
 
-    public fun set(address: Short, data: Byte){
+    public open fun set(address: Short, data: Byte){
         if (writable){
             memory.set(address.toInt(), data)
         }
@@ -14,7 +14,7 @@ abstract class Memory(size: Int = 4096, private val memory: MutableList<Byte> = 
             throw RuntimeException("Attempted to Write to Read only memory")
         }
     }
-    public fun set(address: Short, data: Short){
+    public open fun set(address: Short, data: Short){
         if (writable){
             val msb = (data.toInt() shr 8).toByte()
             val lsb = (data.toInt() and 0xFF).toByte()
