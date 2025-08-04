@@ -16,10 +16,8 @@ class ReadKeyboardInstruction: Instruction(){
         println("Wating for Keyboard Input")
         do {
             input = readln()
-            if (input == ""){
-                input = "00"
-            }
-        } while(!((input.substring(0,0) in ALLOWED_CHARACTERS) || (input.substring(1,2) in ALLOWED_CHARACTERS) ))
+            input = input.padStart(2, '0')
+        } while(!((input.substring(0,1) in ALLOWED_CHARACTERS) || (input.substring(1) in ALLOWED_CHARACTERS) ))
         computer.cpu.getGeneralRegister(rX).data = input.substring(0,2).toInt(16).toByte()
     }
     override fun ProgramCounter(computer: D5700){

@@ -4,9 +4,9 @@ import org.util.D5700
 
 class DrawInstruction: Instruction(){
 
-    private var rX: Int = 0
-    private var rY: Int = 0
-    private var rZ: Int = 0
+    public var rX: Int = 0
+    public var rY: Int = 0
+    public var rZ: Int = 0
 
     override fun parse(data: String){
         this.rX = data.substring(0, 1).toInt(16)
@@ -14,8 +14,11 @@ class DrawInstruction: Instruction(){
         this.rZ = data.substring(2,3).toInt(16)
     }
     override fun operation(computer: D5700){
-        println(computer.cpu.getGeneralRegister(rZ).data.toInt())
-        computer.screen.setPos(rX, rY, computer.cpu.getGeneralRegister(rZ).data.toInt().toChar())
+        val temp = computer.cpu.getGeneralRegister(rX).data.toInt()
+        if (temp > 127){
+            throw IllegalArgumentException("Cannot display characters above 127")
+        }
+        computer.screen.setPos(rY, rZ, temp.toChar())
     }
     override fun ProgramCounter(computer: D5700){
         computer.cpu.ProgramCounter.data = (computer.cpu.ProgramCounter.data + 2).toShort()

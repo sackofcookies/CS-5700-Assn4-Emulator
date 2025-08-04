@@ -10,7 +10,7 @@ class CPU(generalRegisters: Int = 8){
     public fun getGeneralRegister(address: Int): Register8 = general.get(address)
     public fun getTimer(): Runnable = Runnable {
         if (timer.data != 0.toByte()){
-            timer.data.dec()
+            timer.data = (timer.data - 1).toByte()
         }
         
     }

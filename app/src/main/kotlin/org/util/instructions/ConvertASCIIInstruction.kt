@@ -5,8 +5,8 @@ import org.util.D5700
 
 class ConvertASCIIInstruction: Instruction(){
 
-    private var rX: Int = 0
-    private var rY: Int = 0
+    public var rX: Int = 0
+    public var rY: Int = 0
 
     override fun parse(data: String){
         this.rX = data.substring(0, 1).toInt(16)

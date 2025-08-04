@@ -9,7 +9,7 @@ abstract class Instruction{
         ProgramCounter(computer)
     }
 
-    abstract protected fun parse(data: String)
-    abstract protected fun operation(computer: D5700)
-    abstract protected fun ProgramCounter(computer: D5700)
+    abstract public fun parse(data: String)
+    abstract public fun operation(computer: D5700)
+    abstract public fun ProgramCounter(computer: D5700)
 }

@@ -10,10 +10,10 @@ class ConvertBase10Instruction: Instruction(){
         this.rX = data.substring(0, 1).toInt(16)
     }
     override fun operation(computer: D5700){
-        val temp = computer.cpu.getGeneralRegister(rX).data.toUByte().toString()
+        val temp = computer.cpu.getGeneralRegister(rX).data.toUByte().toString().padStart(3, '0')
         val digit1 = temp.substring(0,1).toByte()
         val digit2 = temp.substring(1,2).toByte()
-        val digit3 = temp.substring(2,3).toByte()
+        val digit3 = temp.substring(2).toByte()
         val address = computer.cpu.address.data
         if (computer.cpu.memory){
             computer.instructions.set(address, digit1)

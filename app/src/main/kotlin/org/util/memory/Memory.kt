@@ -16,12 +16,11 @@ abstract class Memory(size: Int = 4096, private val memory: MutableList<Byte> = 
     }
     public fun set(address: Short, data: Short){
         if (writable){
-            val temp = data.toString()
-            temp.padStart(16, '0')
-            val msd = temp.substring(0,8)
-            val lsd = temp.substring(9)
-            memory.set(address.toInt(), msd.toByte())
-            memory.set(address.toInt() + 1, lsd.toByte())
+            val msb = (data.toInt() shr 8).toByte()
+            val lsb = (data.toInt() and 0xFF).toByte()
+            memory[address.toInt()] = msb
+            memory[address.toInt() + 1] = lsb
+
         }
         else {
             throw RuntimeException("Attempted to Write to Read only memory")
