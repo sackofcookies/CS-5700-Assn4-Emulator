@@ -8,7 +8,8 @@ class ScreenHelper(): ScreenObserver{
             it.forEach(){
                 print(it)
             }
-            print("\n")
+            println()
         }
+        println()
     }
 }

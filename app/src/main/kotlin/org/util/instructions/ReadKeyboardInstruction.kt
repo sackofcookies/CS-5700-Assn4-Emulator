@@ -9,7 +9,7 @@ class ReadKeyboardInstruction: Instruction(){
     private var rX: Int = 0
 
     override fun parse(data: String){
-        this.rX = data.substring(0, 0).toInt(16)
+        this.rX = data.substring(0, 1).toInt(16)
     }
     override fun operation(computer: D5700){
         var input: String
@@ -19,11 +19,10 @@ class ReadKeyboardInstruction: Instruction(){
             if (input == ""){
                 input = "00"
             }
-        } while(!((input.substring(0,0) in ALLOWED_CHARACTERS) || (input.substring(1,1) in ALLOWED_CHARACTERS) ))
-        computer.cpu.getGeneralRegister(rX).data = input.substring(0,1).toInt(16).toByte()
+        } while(!((input.substring(0,0) in ALLOWED_CHARACTERS) || (input.substring(1,2) in ALLOWED_CHARACTERS) ))
+        computer.cpu.getGeneralRegister(rX).data = input.substring(0,2).toInt(16).toByte()
     }
     override fun ProgramCounter(computer: D5700){
-        computer.cpu.ProgramCounter.data.inc()
-        computer.cpu.ProgramCounter.data.inc()
+        computer.cpu.ProgramCounter.data = (computer.cpu.ProgramCounter.data + 2).toShort()
     }
 }

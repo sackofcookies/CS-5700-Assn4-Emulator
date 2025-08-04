@@ -18,8 +18,8 @@ abstract class Memory(size: Int = 4096, private val memory: MutableList<Byte> = 
         if (writable){
             val temp = data.toString()
             temp.padStart(16, '0')
-            val msd = temp.substring(0,7)
-            val lsd = temp.substring(8)
+            val msd = temp.substring(0,8)
+            val lsd = temp.substring(9)
             memory.set(address.toInt(), msd.toByte())
             memory.set(address.toInt() + 1, lsd.toByte())
         }

@@ -17,10 +17,18 @@ class D5700(public val instructions: Memory){
 
     private fun getClock(): Runnable = Runnable {
         var instruction = "%04x".format(instructions.getShort(cpu.ProgramCounter.data))
-        InstructionFactory(instruction.substring(0,0).toInt(16)).apply(instruction.substring(1), this)
+        if (instruction != "0000"){
+            val temp = InstructionFactory(instruction.substring(0,1).toInt(16))
+            temp.apply(instruction.substring(1), this)
+        }
+        
     }
     public fun start() {
         val cpuFuture = executor.scheduleAtFixedRate(this.getClock(), 0, 2, TimeUnit.MILLISECONDS)
         val timerFuture = executor.scheduleAtFixedRate(this.cpu.getTimer(), 0, 16, TimeUnit.MILLISECONDS)
+        while ("%04x".format(instructions.getShort(cpu.ProgramCounter.data)) != "0000"){}
+        cpuFuture.cancel(true)
+        timerFuture.cancel(true)
+        executor.shutdown()
     }
 }

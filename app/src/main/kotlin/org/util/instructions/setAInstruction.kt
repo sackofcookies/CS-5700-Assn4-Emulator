@@ -13,7 +13,6 @@ class SetAInstruction: Instruction(){
         computer.cpu.address.data = address
     }
     override fun ProgramCounter(computer: D5700){
-        computer.cpu.ProgramCounter.data.inc()
-        computer.cpu.ProgramCounter.data.inc()
+        computer.cpu.ProgramCounter.data = (computer.cpu.ProgramCounter.data + 2).toShort()
     }
 }

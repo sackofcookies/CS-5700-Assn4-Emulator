@@ -40,10 +40,13 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.AppKt"
+    mainClass = "org.util.ClientKt"
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+tasks.getByName<JavaExec>("run") {
+        standardInput = System.`in`
 }

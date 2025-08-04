@@ -5,7 +5,7 @@ class Screen(edgeLength: Int = 8): Subject<ScreenObserver>{
     private val observers: MutableList<ScreenObserver> = mutableListOf()
 
     public fun setPos(x: Int, y: Int, element: Char) {
-        this.display.get(x).set(y, element)
+        this.display.get(y).set(x, element)
         this.notifyObservers()
     }
     override fun notifyObservers() = observers.forEach() {it.update(display)}
