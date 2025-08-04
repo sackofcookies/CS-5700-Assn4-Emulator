@@ -8,6 +8,7 @@
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     alias(libs.plugins.kotlin.jvm)
+    id("org.jetbrains.kotlinx.kover") version "0.7.0"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -40,10 +41,13 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.AppKt"
+    mainClass = "org.util.ClientKt"
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+tasks.getByName<JavaExec>("run") {
+        standardInput = System.`in`
 }
